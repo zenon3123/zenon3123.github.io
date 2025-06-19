@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteForge: Gaming PC - $1000 to $1500 Build</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo">
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+  <section class="wizard-step">
+    <h2>Step 1: Choose Your Parts (Gaming PC - $1000 to $1500)</h2>
+    <form action="4thpageprojectg1500.html" method="get">
+
+      <!-- CPU -->
+      <div class="form-group">
+        <label for="cpu">Choose a CPU:</label>
+        <select id="cpu" name="cpu" required onchange="updateImage('cpu'); updateMotherboardOptions();">
+          <option value="">-- Select CPU --</option>
+          <option value="amd_ryzen7_5800x" data-socket="am4" data-price="320" data-img="AMD Ryzen 7 5800X.jpg">AMD Ryzen 7 5800X - $320</option>
+          <option value="intel_i7_12700f" data-socket="lga1700" data-price="350" data-img="Intel Core i7-12700F.jpg">Intel Core i7-12700F - $350</option>
+          <option value="amd_ryzen5_7600" data-socket="am5" data-price="300" data-img="AMD Ryzen 5 7600.jpg">AMD Ryzen 5 7600 - $300</option>
+        </select>
+        <img id="cpu-img" class="part-img">
+      </div>
+
+      <!-- Motherboard -->
+      <div class="form-group">
+        <label for="motherboard">Choose a Motherboard:</label>
+        <select id="motherboard" name="motherboard" required onchange="updateImage('motherboard')">
+          <option value="">-- Select Motherboard --</option>
+          <option value="msi_b550_tomahawk" data-socket="am4" data-price="180" data-img="MSI B550 Tomahawk.jpg">MSI B550 Tomahawk - $180</option>
+          <option value="asus_tuf_b660m" data-socket="lga1700" data-price="190" data-img="ASUS TUF Gaming B660M-PLUS.jpg">ASUS TUF Gaming B660M-PLUS - $190</option>
+          <option value="gigabyte_b650" data-socket="am5" data-price="200" data-img="Gigabyte B650 AORUS Elite.jpg">Gigabyte B650 AORUS Elite - $200</option>
+        </select>
+        <img id="motherboard-img" class="part-img">
+      </div>
+
+      <!-- RAM -->
+      <div class="form-group">
+        <label for="ram">Choose RAM:</label>
+        <select id="ram" name="ram" required onchange="updateImage('ram')">
+          <option value="">-- Select RAM --</option>
+          <option value="corsair_32gb_3200" data-price="120" data-img="Corsair Vengeance LPX 32GB DDR4 3200MHz.jpg">Corsair Vengeance LPX 32GB DDR4 3200MHz - $120</option>
+          <option value="gskill_32gb_3600" data-price="140" data-img="G.Skill Ripjaws V 32GB DDR4 3600MHz.jpg">G.Skill Ripjaws V 32GB DDR4 3600MHz - $140</option>
+          <option value="kingston_32gb_3200" data-price="110" data-img="Kingston HyperX Fury 32GB DDR4 3200MHz.jpg">Kingston HyperX Fury 32GB DDR4 3200MHz - $110</option>
+        </select>
+        <img id="ram-img" class="part-img">
+      </div>
+
+      <!-- Storage -->
+      <div class="form-group">
+        <label for="storage">Choose Storage:</label>
+        <select id="storage" name="storage" required onchange="updateImage('storage')">
+          <option value="">-- Select Storage --</option>
+          <option value="wd_black_1tb_nvme" data-price="85" data-img="WD Black SN770 1TB NVMe SSD.jpg">WD Black SN770 1TB NVMe SSD - $85</option>
+          <option value="samsung_970evo_1tb" data-price="130" data-img="Samsung 970 EVO Plus 1TB NVMe SSD.jpg">Samsung 970 EVO Plus 1TB NVMe SSD - $130</option>
+          <option value="crucial_p3_2tb_nvme" data-price="160" data-img="Crucial P3 2TB NVMe SSD.jpg">Crucial P3 2TB NVMe SSD - $160</option>
+        </select>
+        <img id="storage-img" class="part-img">
+      </div>
+
+      <!-- PSU -->
+      <div class="form-group">
+        <label for="psu">Choose Power Supply:</label>
+        <select id="psu" name="psu" required onchange="updateImage('psu')">
+          <option value="">-- Select PSU --</option>
+          <option value="corsair_750w" data-price="90" data-img="Corsair RM750 750W 80+ Gold.jpg">Corsair RM750 750W 80+ Gold - $90</option>
+          <option value="evga_750w" data-price="95" data-img="EVGA SuperNOVA 750 G5 80+ Gold.jpg">EVGA SuperNOVA 750 G5 80+ Gold - $95</option>
+          <option value="seasonic_750w" data-price="100" data-img="Seasonic Focus GX-750 80+ Gold.jpg">Seasonic Focus GX-750 80+ Gold - $100</option>
+        </select>
+        <img id="psu-img" class="part-img">
+      </div>
+
+      <!-- GPU -->
+      <div class="form-group">
+        <label for="gpu">Choose Graphics Card:</label>
+        <select id="gpu" name="gpu" required onchange="updateImage('gpu')">
+          <option value="">-- Select GPU --</option>
+          <option value="rtx_3060ti" data-price="400" data-img="NVIDIA RTX 3060 Ti 8GB.jpg">NVIDIA RTX 3060 Ti 8GB - $400</option>
+          <option value="rx_6700xt" data-price="480" data-img="AMD Radeon RX 6700 XT 12GB.jpg">AMD Radeon RX 6700 XT 12GB - $480</option>
+          <option value="rtx_3070" data-price="520" data-img="NVIDIA RTX 3070 8GB.jpg">NVIDIA RTX 3070 8GB - $520</option>
+        </select>
+        <img id="gpu-img" class="part-img">
+      </div>
+
+      <button type="submit">Next</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 ByteForge. All rights reserved.
+</footer>
+
+<script>
+    const cpuSelect = document.getElementById('cpu');
+    const motherboardSelect = document.getElementById('motherboard');
+    const allMotherboards = Array.from(motherboardSelect.options);
+
+    function updateMotherboardOptions() {
+      const socket = cpuSelect.options[cpuSelect.selectedIndex].dataset.socket;
+      motherboardSelect.innerHTML = '';
+      motherboardSelect.appendChild(new Option('-- Select Motherboard --', ''));
+
+      allMotherboards.forEach(opt => {
+        if (opt.dataset.socket === socket) {
+          motherboardSelect.appendChild(opt.cloneNode(true));
+        }
+      });
+
+      motherboardSelect.onchange = () => updateImage('motherboard');
+      updateImage('motherboard'); // Clear motherboard image too when CPU changes
+    }
+
+    function updateImage(part) {
+      const select = document.getElementById(part);
+      const image = document.getElementById(part + '-img');
+      const selectedOption = select.options[select.selectedIndex];
+      const imgSrc = selectedOption.getAttribute('data-img');
+
+      if (imgSrc) {
+        image.src = imgSrc;
+        image.style.display = 'block';
+      } else {
+        image.src = '';
+        image.style.display = 'none';
+      }
+    }
+
+    window.onload = () => {
+      ['cpu', 'motherboard', 'ram', 'storage', 'psu', 'gpu'].forEach(part => {
+        updateImage(part);
+      });
+    };
+  </script>
+</body>
+</head>
