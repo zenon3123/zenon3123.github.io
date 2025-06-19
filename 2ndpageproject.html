@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteForge: Your PC Building Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Dis is a nabigasyown -->
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo">
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+  
+  <!-- this where u pick purpose and badjit -->
+  <main>
+    <section class="wizard-step">
+      <h2>Step 1: Choose Your Purpose and Budget</h2>
+
+      <form id="build-form">
+        <div class="form-group">
+          <label for="purpose">What will you use your PC for?</label>
+          <select id="purpose" name="purpose">
+            <option value="">-- Select Purpose --</option>
+            <option value="gaming">Gaming</option>
+            <option value="streaming">Streaming</option>
+            <option value="workstation">Workstation</option>
+            <option value="general">General</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="budget">What's your budget?</label>
+          <select id="budget" name="budget">
+            <option value="">-- Select Budget Range --</option>
+            <option value="500">Under $500</option>
+            <option value="1000">500-1000</option>
+            <option value="1500">1000-1500</option>
+            <option value="2000">1500-2000</option>
+            <option value="unlimited">Unlimited</option>
+          </select>
+        </div>
+
+        <button type="submit">Next</button>
+      </form>
+    </section>
+  </main>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer id="contact">
+    &copy; 2025 BuildMyPC Guide. All rights reserved.
+  </footer>
+  <script>
+    document.getElementById('build-form').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      const purpose = document.getElementById('purpose').value;
+      const budget = document.getElementById('budget').value;
+
+      if (!purpose || !budget) {
+        alert('Please select both purpose and budget.');
+        return;
+      }
+      let filename = `${purpose}${budget}.html`;
+      window.location.href = filename;
+    });
+  </script>
+</body>
+</html>

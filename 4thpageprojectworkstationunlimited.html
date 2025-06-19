@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteForge: Review Workstation Build</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo" />
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step">
+      <h2>Step 2: Review Your Workstation Build (Unlimited Budget)</h2>
+      <div class="selected-parts">
+        <div><strong>CPU:</strong> <span id="cpu-review"></span></div>
+        <div><strong>Motherboard:</strong> <span id="motherboard-review"></span></div>
+        <div><strong>RAM:</strong> <span id="ram-review"></span></div>
+        <div><strong>Storage:</strong> <span id="storage-review"></span></div>
+        <div><strong>Power Supply:</strong> <span id="psu-review"></span></div>
+        <div><strong>Graphics Card:</strong> <span id="gpu-review"></span></div>
+        <hr />
+        <div><strong>Total Estimated Price:</strong> $<span id="total-price"></span></div>
+      </div>
+
+      <div class="actions">
+        <button onclick="window.history.back()">Edit Selections</button>
+        <button onclick="goToConfirmation()">Finalize Build</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const partNames = {
+      "intel_i9_14900k": "Intel Core i9-14900K",
+      "amd_threadripper_7980x": "AMD Ryzen Threadripper PRO 7980X",
+      "asus_z790_maximus": "ASUS ROG Maximus Z790 Hero",
+      "asus_pro_ws_w790": "ASUS Pro WS WRX90E-SAGE SE",
+      "gskill_128gb_ddr5": "G.Skill Trident Z5 128GB DDR5 6400MHz",
+      "corsair_256gb_ddr5": "Corsair Dominator Platinum 256GB DDR5 6000MHz",
+      "sabrent_rocket_4tb": "Sabrent Rocket 4 Plus 4TB NVMe SSD",
+      "samsung_990pro_4tb": "Samsung 990 PRO 4TB NVMe SSD",
+      "corsair_ax1600i": "Corsair AX1600i 80+ Titanium",
+      "seasonic_prime_tx1600": "Seasonic Prime TX-1600 80+ Titanium",
+      "rtx_4090": "NVIDIA GeForce RTX 4090",
+      "radeon_pro_w7900": "AMD Radeon PRO W7900"
+    };
+
+    const partPrices = {
+      "intel_i9_14900k": 600,
+      "amd_threadripper_7980x": 5000,
+      "asus_z790_maximus": 600,
+      "asus_pro_ws_w790": 1000,
+      "gskill_128gb_ddr5": 400,
+      "corsair_256gb_ddr5": 800,
+      "sabrent_rocket_4tb": 600,
+      "samsung_990pro_4tb": 550,
+      "corsair_ax1600i": 500,
+      "seasonic_prime_tx1600": 480,
+      "rtx_4090": 1800,
+      "radeon_pro_w7900": 3500
+    };
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        cpu: params.get("cpu"),
+        motherboard: params.get("motherboard"),
+        ram: params.get("ram"),
+        storage: params.get("storage"),
+        psu: params.get("psu"),
+        gpu: params.get("gpu")
+      };
+    }
+
+    function populateReview() {
+      const parts = getQueryParams();
+      let totalPrice = 0;
+
+      document.getElementById("cpu-review").textContent = partNames[parts.cpu] || "N/A";
+      totalPrice += partPrices[parts.cpu] || 0;
+
+      document.getElementById("motherboard-review").textContent = partNames[parts.motherboard] || "N/A";
+      totalPrice += partPrices[parts.motherboard] || 0;
+
+      document.getElementById("ram-review").textContent = partNames[parts.ram] || "N/A";
+      totalPrice += partPrices[parts.ram] || 0;
+
+      document.getElementById("storage-review").textContent = partNames[parts.storage] || "N/A";
+      totalPrice += partPrices[parts.storage] || 0;
+
+      document.getElementById("psu-review").textContent = partNames[parts.psu] || "N/A";
+      totalPrice += partPrices[parts.psu] || 0;
+
+      document.getElementById("gpu-review").textContent = partNames[parts.gpu] || "N/A";
+      totalPrice += partPrices[parts.gpu] || 0;
+
+      document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    }
+
+    function goToConfirmation() {
+      const parts = getQueryParams();
+      const url = new URL('5thpageprojectworkstationunlimited.html', window.location.href);
+      for (const key in parts) {
+        url.searchParams.set(key, parts[key]);
+      }
+      window.location.href = url.toString();
+    }
+
+    window.onload = populateReview;
+  </script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer>
+    <p>&copy; 2025 ByteForge. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

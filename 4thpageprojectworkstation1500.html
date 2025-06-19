@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteForge: Review Workstation Build</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo" />
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step">
+      <h2>Step 2: Review Your Workstation Build ($1000–$1500)</h2>
+      <div class="selected-parts">
+        <div><strong>CPU:</strong> <span id="cpu-review"></span></div>
+        <div><strong>Motherboard:</strong> <span id="motherboard-review"></span></div>
+        <div><strong>RAM:</strong> <span id="ram-review"></span></div>
+        <div><strong>Storage:</strong> <span id="storage-review"></span></div>
+        <div><strong>Power Supply:</strong> <span id="psu-review"></span></div>
+        <div><strong>Graphics Card:</strong> <span id="gpu-review"></span></div>
+        <hr />
+        <div><strong>Total Estimated Price:</strong> $<span id="total-price"></span></div>
+      </div>
+
+      <div class="actions">
+        <button onclick="window.history.back()">Edit Selections</button>
+        <button onclick="goToConfirmation()">Finalize Build</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const partNames = {
+      "intel_i7_13700": "Intel Core i7-13700",
+      "amd_ryzen7_7700x": "AMD Ryzen 7 7700X",
+      "asus_b660m_a": "ASUS B660M-A WiFi D4",
+      "msi_b650m_pro": "MSI B650M PRO-AX",
+      "corsair_32gb_3600": "Corsair Vengeance 32GB DDR4 3600MHz",
+      "gskill_32gb_6000": "G.Skill 32GB DDR5 6000MHz",
+      "samsung_980pro_1tb": "Samsung 980 PRO 1TB NVMe SSD",
+      "crucial_p5plus_2tb": "Crucial P5 Plus 2TB NVMe SSD",
+      "corsair_rm750": "Corsair RM750 80+ Gold",
+      "seasonic_focus_750": "Seasonic Focus GX-750 80+ Gold",
+      "rtx_4060ti": "NVIDIA GeForce RTX 4060 Ti",
+      "rx_7700xt": "AMD Radeon RX 7700 XT"
+    };
+
+    const partPrices = {
+      "intel_i7_13700": 400,
+      "amd_ryzen7_7700x": 360,
+      "asus_b660m_a": 170,
+      "msi_b650m_pro": 160,
+      "corsair_32gb_3600": 100,
+      "gskill_32gb_6000": 130,
+      "samsung_980pro_1tb": 90,
+      "crucial_p5plus_2tb": 130,
+      "corsair_rm750": 110,
+      "seasonic_focus_750": 120,
+      "rtx_4060ti": 400,
+      "rx_7700xt": 430
+    };
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        cpu: params.get("cpu"),
+        motherboard: params.get("motherboard"),
+        ram: params.get("ram"),
+        storage: params.get("storage"),
+        psu: params.get("psu"),
+        gpu: params.get("gpu")
+      };
+    }
+
+    function populateReview() {
+      const parts = getQueryParams();
+      let totalPrice = 0;
+
+      document.getElementById("cpu-review").textContent = partNames[parts.cpu] || "N/A";
+      totalPrice += partPrices[parts.cpu] || 0;
+
+      document.getElementById("motherboard-review").textContent = partNames[parts.motherboard] || "N/A";
+      totalPrice += partPrices[parts.motherboard] || 0;
+
+      document.getElementById("ram-review").textContent = partNames[parts.ram] || "N/A";
+      totalPrice += partPrices[parts.ram] || 0;
+
+      document.getElementById("storage-review").textContent = partNames[parts.storage] || "N/A";
+      totalPrice += partPrices[parts.storage] || 0;
+
+      document.getElementById("psu-review").textContent = partNames[parts.psu] || "N/A";
+      totalPrice += partPrices[parts.psu] || 0;
+
+      document.getElementById("gpu-review").textContent = partNames[parts.gpu] || "N/A";
+      totalPrice += partPrices[parts.gpu] || 0;
+
+      document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    }
+
+    function goToConfirmation() {
+      const parts = getQueryParams();
+      const url = new URL('5thpageprojectworkstation1500.html', window.location.href);
+      for (const key in parts) {
+        url.searchParams.set(key, parts[key]);
+      }
+      window.location.href = url.toString();
+    }
+
+    window.onload = populateReview;
+  </script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer>
+    <p>&copy; 2025 ByteForge. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

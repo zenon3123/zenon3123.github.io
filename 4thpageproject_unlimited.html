@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteForge: Your PC Building Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo">
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step">
+      <h2>Step 2: Review Your Build</h2>
+      <div class="selected-parts">
+        <div><strong>CPU:</strong> <span id="cpu-review"></span></div>
+        <div><strong>Motherboard:</strong> <span id="motherboard-review"></span></div>
+        <div><strong>RAM:</strong> <span id="ram-review"></span></div>
+        <div><strong>Storage:</strong> <span id="storage-review"></span></div>
+        <div><strong>Power Supply:</strong> <span id="psu-review"></span></div>
+        <div><strong>Graphics Card:</strong> <span id="gpu-review"></span></div>
+        <hr>
+        <div><strong>Total Estimated Price:</strong> $<span id="total-price"></span></div>
+      </div>
+
+      <div class="actions">
+        <button onclick="window.history.back()">Edit Selections</button>
+        <button onclick="goToConfirmation()">Finalize Build</button>
+      </div>
+    </section>
+  </main>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <script>
+    const partNames = {
+      "amd_ryzen9_7950x3d": "AMD Ryzen 9 7950X3D",
+      "intel_i9_13900k": "Intel Core i9-13900K",
+      "amd_threadripper_pro": "AMD Threadripper Pro 5975WX",
+      "asus_x670e": "ASUS ROG X670E Crosshair",
+      "msi_z790": "MSI MPG Z790 Carbon WiFi",
+      "asus_trx40": "ASUS ROG Zenith TRX40 Extreme",
+      "corsair_64gb_6000": "Corsair Vengeance 64GB DDR5 6000MHz",
+      "gskill_64gb_6400": "G.Skill Trident Z5 64GB DDR5 6400MHz",
+      "kingston_64gb_5600": "Kingston Fury Beast 64GB DDR5 5600MHz",
+      "samsung_990pro_4tb": "Samsung 990 PRO 4TB NVMe SSD",
+      "wd_black_4tb_nvme": "WD Black SN850X 4TB NVMe SSD",
+      "crucial_p5plus_4tb": "Crucial P5 Plus 4TB NVMe SSD",
+      "corsair_1000w": "Corsair AX1000 1000W 80+ Titanium",
+      "evga_1300w": "EVGA SuperNOVA 1300 G6 80+ Platinum",
+      "seasonic_1200w": "Seasonic PRIME TX-1200 80+ Titanium",
+      "rtx_4090": "NVIDIA RTX 4090 24GB",
+      "rx_7900xtx": "AMD Radeon RX 7900 XTX 24GB",
+      "nvidia_a6000": "NVIDIA RTX A6000 48GB"
+    };
+
+    const partPrices = {
+      "amd_ryzen9_7950x3d": 700,
+      "intel_i9_13900k": 720,
+      "amd_threadripper_pro": 2500,
+      "asus_x670e": 350,
+      "msi_z790": 300,
+      "asus_trx40": 850,
+      "corsair_64gb_6000": 360,
+      "gskill_64gb_6400": 400,
+      "kingston_64gb_5600": 340,
+      "samsung_990pro_4tb": 600,
+      "wd_black_4tb_nvme": 580,
+      "crucial_p5plus_4tb": 560,
+      "corsair_1000w": 220,
+      "evga_1300w": 270,
+      "seasonic_1200w": 300,
+      "rtx_4090": 1600,
+      "rx_7900xtx": 1000,
+      "nvidia_a6000": 4500
+    };
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        cpu: params.get("cpu"),
+        motherboard: params.get("motherboard"),
+        ram: params.get("ram"),
+        storage: params.get("storage"),
+        psu: params.get("psu"),
+        gpu: params.get("gpu")
+      };
+    }
+
+    function populateReview() {
+      const parts = getQueryParams();
+      let totalPrice = 0;
+
+      document.getElementById("cpu-review").textContent = partNames[parts.cpu] || "N/A";
+      totalPrice += partPrices[parts.cpu] || 0;
+
+      document.getElementById("motherboard-review").textContent = partNames[parts.motherboard] || "N/A";
+      totalPrice += partPrices[parts.motherboard] || 0;
+
+      document.getElementById("ram-review").textContent = partNames[parts.ram] || "N/A";
+      totalPrice += partPrices[parts.ram] || 0;
+
+      document.getElementById("storage-review").textContent = partNames[parts.storage] || "N/A";
+      totalPrice += partPrices[parts.storage] || 0;
+
+      document.getElementById("psu-review").textContent = partNames[parts.psu] || "N/A";
+      totalPrice += partPrices[parts.psu] || 0;
+
+      document.getElementById("gpu-review").textContent = partNames[parts.gpu] || "N/A";
+      totalPrice += partPrices[parts.gpu] || 0;
+
+      document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    }
+
+    function goToConfirmation() {
+      const parts = getQueryParams();
+      const url = new URL('5thpageproject_unlimited.html', window.location.href);
+      for (const key in parts) {
+        url.searchParams.set(key, parts[key]);
+      }
+      window.location.href = url.toString();
+    }
+
+    window.onload = populateReview;
+  </script>
+  <footer>
+    <p>&copy; 2025 ByteForge. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ByteForge: Review Your Unlimited Budget Streaming PC</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo" />
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step">
+      <h2>Step 2: Review Your Streaming PC Build (Unlimited Budget)</h2>
+      <div class="selected-parts">
+        <div><strong>CPU:</strong> <span id="cpu-review"></span></div>
+        <div><strong>Motherboard:</strong> <span id="motherboard-review"></span></div>
+        <div><strong>RAM:</strong> <span id="ram-review"></span></div>
+        <div><strong>Storage:</strong> <span id="storage-review"></span></div>
+        <div><strong>Power Supply:</strong> <span id="psu-review"></span></div>
+        <div><strong>Graphics Card:</strong> <span id="gpu-review"></span></div>
+        <hr />
+        <div><strong>Total Estimated Price:</strong> $<span id="total-price"></span></div>
+      </div>
+
+      <div class="actions">
+        <button onclick="window.history.back()">Edit Selections</button>
+        <button onclick="goToConfirmation()">Finalize Build</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const partNames = {
+      "intel_i9_14900k": "Intel Core i9-14900K",
+      "amd_ryzen9_7950x": "AMD Ryzen 9 7950X",
+      "asus_z790_hero": "ASUS ROG Maximus Z790 Hero",
+      "msi_x670e_ace": "MSI MEG X670E ACE",
+      "gskill_64gb_ddr5_6000": "G.Skill Trident Z5 64GB DDR5 6000MHz",
+      "corsair_64gb_ddr5_6400": "Corsair Dominator 64GB DDR5 6400MHz",
+      "samsung_990pro_2tb": "Samsung 990 PRO 2TB NVMe SSD",
+      "sabrent_rocket_4tb": "Sabrent Rocket 4TB NVMe SSD",
+      "corsair_ax1000": "Corsair AX1000 80+ Titanium",
+      "seasonic_prime_1300w": "Seasonic PRIME TX-1300 80+ Titanium",
+      "rtx_4090": "NVIDIA RTX 4090",
+      "rx_7900xtx": "AMD Radeon RX 7900 XTX"
+    };
+
+    const partPrices = {
+      "intel_i9_14900k": 620,
+      "amd_ryzen9_7950x": 590,
+      "asus_z790_hero": 450,
+      "msi_x670e_ace": 480,
+      "gskill_64gb_ddr5_6000": 250,
+      "corsair_64gb_ddr5_6400": 280,
+      "samsung_990pro_2tb": 220,
+      "sabrent_rocket_4tb": 400,
+      "corsair_ax1000": 250,
+      "seasonic_prime_1300w": 270,
+      "rtx_4090": 1700,
+      "rx_7900xtx": 1000
+    };
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        cpu: params.get("cpu"),
+        motherboard: params.get("motherboard"),
+        ram: params.get("ram"),
+        storage: params.get("storage"),
+        psu: params.get("psu"),
+        gpu: params.get("gpu")
+      };
+    }
+
+    function populateReview() {
+      const parts = getQueryParams();
+      let totalPrice = 0;
+
+      function fillPart(id, key) {
+        const name = partNames[key] || "N/A";
+        const price = partPrices[key] || 0;
+        document.getElementById(id).textContent = name;
+        return price;
+      }
+
+      totalPrice += fillPart("cpu-review", parts.cpu);
+      totalPrice += fillPart("motherboard-review", parts.motherboard);
+      totalPrice += fillPart("ram-review", parts.ram);
+      totalPrice += fillPart("storage-review", parts.storage);
+      totalPrice += fillPart("psu-review", parts.psu);
+      totalPrice += fillPart("gpu-review", parts.gpu);
+
+      document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    }
+
+    function goToConfirmation() {
+      const parts = getQueryParams();
+      const url = new URL('5thpageprojectstreamingunlimited.html', window.location.href);
+      for (const key in parts) {
+        url.searchParams.set(key, parts[key]);
+      }
+      window.location.href = url.toString();
+    }
+
+    window.onload = populateReview;
+  </script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer>
+    <p>&copy; 2025 ByteForge. All rights reserved.</p>
+  </footer>
+</body>
+</html>

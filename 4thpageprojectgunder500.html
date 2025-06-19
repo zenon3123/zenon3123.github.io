@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteForge: Review Your Build</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo">
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step">
+      <h2>Step 2: Review Your Build</h2>
+      <div class="selected-parts">
+        <div><strong>CPU:</strong> <span id="cpu-review"></span></div>
+        <div><strong>Motherboard:</strong> <span id="motherboard-review"></span></div>
+        <div><strong>RAM:</strong> <span id="ram-review"></span></div>
+        <div><strong>Storage:</strong> <span id="storage-review"></span></div>
+        <div><strong>Power Supply:</strong> <span id="psu-review"></span></div>
+        <div><strong>Graphics Card:</strong> <span id="gpu-review"></span></div>
+        <hr>
+        <div><strong>Total Estimated Price:</strong> $<span id="total-price"></span></div>
+      </div>
+
+      <div class="actions">
+        <button onclick="window.history.back()">Edit Selections</button>
+        <button onclick="goToConfirmation()">Finalize Build</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const partNames = {
+      "amd_ryzen3_3200g": "AMD Ryzen 3 3200G",
+      "intel_i3_12100f": "Intel Core i3-12100F",
+      "amd_ryzen5_3400g": "AMD Ryzen 5 3400G",
+      "asrock_b450m": "ASRock B450M Pro4",
+      "gigabyte_b460m": "Gigabyte B460M DS3H",
+      "msi_b550m": "MSI B550M PRO-VDH WiFi",
+      "corsair_8gb_2666": "Corsair Vengeance LPX 8GB DDR4 2666MHz",
+      "team_8gb_3000": "Team T-Force Vulcan 8GB DDR4 3000MHz",
+      "crucial_8gb_2400": "Crucial Ballistix 8GB DDR4 2400MHz",
+      "teamgroup_480gb_ssd": "TeamGroup 480GB SSD",
+      "adata_512gb_ssd": "ADATA Ultimate SU800 512GB SSD",
+      "seagate_1tb_hdd": "Seagate Barracuda 1TB HDD",
+      "evga_500w": "EVGA 500 W1 500W",
+      "corsair_450w": "Corsair CV450 450W",
+      "thermaltake_500w": "Thermaltake Smart 500W",
+      "gtx_1650": "NVIDIA GTX 1650 4GB",
+      "rx_550": "AMD Radeon RX 550 4GB",
+      "gtx_1050ti": "NVIDIA GTX 1050 Ti 4GB"
+    };
+
+    const partPrices = {
+      "amd_ryzen3_3200g": 90,
+      "intel_i3_12100f": 120,
+      "amd_ryzen5_3400g": 150,
+      "asrock_b450m": 70,
+      "gigabyte_b460m": 100,
+      "msi_b550m": 130,
+      "corsair_8gb_2666": 40,
+      "team_8gb_3000": 50,
+      "crucial_8gb_2400": 35,
+      "teamgroup_480gb_ssd": 60,
+      "adata_512gb_ssd": 70,
+      "seagate_1tb_hdd": 40,
+      "evga_500w": 40,
+      "corsair_450w": 50,
+      "thermaltake_500w": 45,
+      "gtx_1650": 150,
+      "rx_550": 100,
+      "gtx_1050ti": 120
+    };
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        cpu: params.get("cpu"),
+        motherboard: params.get("motherboard"),
+        ram: params.get("ram"),
+        storage: params.get("storage"),
+        psu: params.get("psu"),
+        gpu: params.get("gpu")
+      };
+    }
+
+    function populateReview() {
+      const parts = getQueryParams();
+      let totalPrice = 0;
+
+      document.getElementById("cpu-review").textContent = partNames[parts.cpu] || "N/A";
+      totalPrice += partPrices[parts.cpu] || 0;
+
+      document.getElementById("motherboard-review").textContent = partNames[parts.motherboard] || "N/A";
+      totalPrice += partPrices[parts.motherboard] || 0;
+
+      document.getElementById("ram-review").textContent = partNames[parts.ram] || "N/A";
+      totalPrice += partPrices[parts.ram] || 0;
+
+      document.getElementById("storage-review").textContent = partNames[parts.storage] || "N/A";
+      totalPrice += partPrices[parts.storage] || 0;
+
+      document.getElementById("psu-review").textContent = partNames[parts.psu] || "N/A";
+      totalPrice += partPrices[parts.psu] || 0;
+
+      document.getElementById("gpu-review").textContent = partNames[parts.gpu] || "N/A";
+      totalPrice += partPrices[parts.gpu] || 0;
+      document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    }
+
+    function goToConfirmation() {
+      const parts = getQueryParams();
+      const url = new URL('5thpageprojectgunder500.html', window.location.href);
+      for (const key in parts) {
+        url.searchParams.set(key, parts[key]);
+      }
+      window.location.href = url.toString();
+    }
+
+    window.onload = populateReview;
+  </script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer>
+    <p>&copy; 2025 ByteForge. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

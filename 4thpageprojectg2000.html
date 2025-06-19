@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteForge: Review Your Build</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo">
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step">
+      <h2>Step 2: Review Your Build</h2>
+      <div class="selected-parts">
+        <div><strong>CPU:</strong> <span id="cpu-review"></span></div>
+        <div><strong>Motherboard:</strong> <span id="motherboard-review"></span></div>
+        <div><strong>RAM:</strong> <span id="ram-review"></span></div>
+        <div><strong>Storage:</strong> <span id="storage-review"></span></div>
+        <div><strong>Power Supply:</strong> <span id="psu-review"></span></div>
+        <div><strong>Graphics Card:</strong> <span id="gpu-review"></span></div>
+        <hr>
+        <div><strong>Total Estimated Price:</strong> $<span id="total-price"></span></div>
+      </div>
+
+      <div class="actions">
+        <button onclick="window.history.back()">Edit Selections</button>
+        <button onclick="goToConfirmation()">Finalize Build</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const partNames = {
+      "amd_ryzen7_7700x": "AMD Ryzen 7 7700X",
+      "intel_i7_13700k": "Intel Core i7-13700K",
+      "amd_ryzen9_7900x": "AMD Ryzen 9 7900X",
+      "asus_x670e": "ASUS ROG X670E Crosshair",
+      "msi_z790": "MSI MPG Z790 Carbon WiFi",
+      "gigabyte_x670a": "Gigabyte X670 AORUS Elite AX",
+      "corsair_32gb_5600": "Corsair Vengeance 32GB DDR5 5600MHz",
+      "gskill_32gb_6000": "G.Skill Trident Z5 32GB DDR5 6000MHz",
+      "kingston_32gb_5200": "Kingston Fury Beast 32GB DDR5 5200MHz",
+      "samsung_980pro_2tb": "Samsung 980 PRO 2TB NVMe SSD",
+      "wd_black_2tb_nvme": "WD Black SN850 2TB NVMe SSD",
+      "crucial_p5plus_2tb": "Crucial P5 Plus 2TB NVMe SSD",
+      "corsair_850w": "Corsair RM850x 850W 80+ Gold",
+      "evga_850w": "EVGA SuperNOVA 850 G6 80+ Gold",
+      "seasonic_850w": "Seasonic Focus GX-850 80+ Gold",
+      "rtx_4070ti": "NVIDIA RTX 4070 Ti 12GB",
+      "rx_7900xt": "AMD Radeon RX 7900 XT 20GB",
+      "rtx_4080": "NVIDIA RTX 4080 16GB"
+    };
+
+    const partPrices = {
+      "amd_ryzen7_7700x": 400,
+      "intel_i7_13700k": 420,
+      "amd_ryzen9_7900x": 470,
+      "asus_x670e": 350,
+      "msi_z790": 300,
+      "gigabyte_x670a": 320,
+      "corsair_32gb_5600": 180,
+      "gskill_32gb_6000": 200,
+      "kingston_32gb_5200": 170,
+      "samsung_980pro_2tb": 300,
+      "wd_black_2tb_nvme": 280,
+      "crucial_p5plus_2tb": 260,
+      "corsair_850w": 130,
+      "evga_850w": 140,
+      "seasonic_850w": 150,
+      "rtx_4070ti": 800,
+      "rx_7900xt": 850,
+      "rtx_4080": 1200
+    };
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        cpu: params.get("cpu"),
+        motherboard: params.get("motherboard"),
+        ram: params.get("ram"),
+        storage: params.get("storage"),
+        psu: params.get("psu"),
+        gpu: params.get("gpu")
+      };
+    }
+
+    function populateReview() {
+      const parts = getQueryParams();
+      let totalPrice = 0;
+
+      document.getElementById("cpu-review").textContent = partNames[parts.cpu] || "N/A";
+      totalPrice += partPrices[parts.cpu] || 0;
+
+      document.getElementById("motherboard-review").textContent = partNames[parts.motherboard] || "N/A";
+      totalPrice += partPrices[parts.motherboard] || 0;
+
+      document.getElementById("ram-review").textContent = partNames[parts.ram] || "N/A";
+      totalPrice += partPrices[parts.ram] || 0;
+
+      document.getElementById("storage-review").textContent = partNames[parts.storage] || "N/A";
+      totalPrice += partPrices[parts.storage] || 0;
+
+      document.getElementById("psu-review").textContent = partNames[parts.psu] || "N/A";
+      totalPrice += partPrices[parts.psu] || 0;
+
+      document.getElementById("gpu-review").textContent = partNames[parts.gpu] || "N/A";
+      totalPrice += partPrices[parts.gpu] || 0;
+
+      document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    }
+
+    function goToConfirmation() {
+      const parts = getQueryParams();
+      const url = new URL('5thpageprojectg2000.html', window.location.href);
+      for (const key in parts) {
+        url.searchParams.set(key, parts[key]);
+      }
+      window.location.href = url.toString();
+    }
+
+    window.onload = populateReview;
+  </script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer>
+    <p>&copy; 2025 ByteForge. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

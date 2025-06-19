@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteForge: Review Your Build</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo">
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step">
+      <h2>Step 2: Review Your Build (General Purpose - $1500 to $2000)</h2>
+      <div class="selected-parts">
+        <div><strong>CPU:</strong> <span id="cpu-review"></span></div>
+        <div><strong>Motherboard:</strong> <span id="motherboard-review"></span></div>
+        <div><strong>RAM:</strong> <span id="ram-review"></span></div>
+        <div><strong>Storage:</strong> <span id="storage-review"></span></div>
+        <div><strong>Power Supply:</strong> <span id="psu-review"></span></div>
+        <div><strong>Graphics Card:</strong> <span id="gpu-review"></span></div>
+        <hr>
+        <div><strong>Total Estimated Price:</strong> $<span id="total-price"></span></div>
+      </div>
+
+      <div class="actions">
+        <button onclick="window.history.back()">Edit Selections</button>
+        <button onclick="goToConfirmation()">Finalize Build</button>
+      </div>
+    </section>
+  </main>
+<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer>
+    <p>&copy; 2025 ByteForge. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const partNames = {
+      "intel_i9_13900f": "Intel Core i9-13900F",
+      "amd_ryzen9_7900x": "AMD Ryzen 9 7900X",
+      "asus_z790_prime": "ASUS PRIME Z790-P",
+      "msi_b650_tomahawk": "MSI B650 TOMAHAWK WIFI",
+      "corsair_32gb_ddr5_6000": "Corsair Vengeance 32GB DDR5 6000MHz",
+      "gskill_32gb_ddr5_6400": "G.Skill Trident Z5 32GB DDR5 6400MHz",
+      "samsung_990pro_1tb": "Samsung 990 PRO 1TB NVMe SSD",
+      "wd_black_sn850x_2tb": "WD Black SN850X 2TB NVMe SSD",
+      "corsair_rm850x": "Corsair RM850x 850W 80+ Gold",
+      "seasonic_focus_850": "Seasonic Focus GX-850 80+ Gold",
+      "rtx_4070_super": "NVIDIA RTX 4070 Super",
+      "rx_7900_xt": "AMD Radeon RX 7900 XT"
+    };
+
+    const partPrices = {
+      "intel_i9_13900f": 480,
+      "amd_ryzen9_7900x": 430,
+      "asus_z790_prime": 210,
+      "msi_b650_tomahawk": 200,
+      "corsair_32gb_ddr5_6000": 150,
+      "gskill_32gb_ddr5_6400": 165,
+      "samsung_990pro_1tb": 130,
+      "wd_black_sn850x_2tb": 180,
+      "corsair_rm850x": 135,
+      "seasonic_focus_850": 140,
+      "rtx_4070_super": 600,
+      "rx_7900_xt": 620
+    };
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        cpu: params.get("cpu"),
+        motherboard: params.get("motherboard"),
+        ram: params.get("ram"),
+        storage: params.get("storage"),
+        psu: params.get("psu"),
+        gpu: params.get("gpu")
+      };
+    }
+
+    function populateReview() {
+      const parts = getQueryParams();
+      let totalPrice = 0;
+
+      document.getElementById("cpu-review").textContent = partNames[parts.cpu] || "N/A";
+      totalPrice += partPrices[parts.cpu] || 0;
+
+      document.getElementById("motherboard-review").textContent = partNames[parts.motherboard] || "N/A";
+      totalPrice += partPrices[parts.motherboard] || 0;
+
+      document.getElementById("ram-review").textContent = partNames[parts.ram] || "N/A";
+      totalPrice += partPrices[parts.ram] || 0;
+
+      document.getElementById("storage-review").textContent = partNames[parts.storage] || "N/A";
+      totalPrice += partPrices[parts.storage] || 0;
+
+      document.getElementById("psu-review").textContent = partNames[parts.psu] || "N/A";
+      totalPrice += partPrices[parts.psu] || 0;
+
+      document.getElementById("gpu-review").textContent = partNames[parts.gpu] || "N/A";
+      totalPrice += partPrices[parts.gpu] || 0;
+
+      document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    }
+
+    function goToConfirmation() {
+      const parts = getQueryParams();
+      const url = new URL('5thpageprojectgeneral2000.html', window.location.href);
+      for (const key in parts) {
+        url.searchParams.set(key, parts[key]);
+      }
+      window.location.href = url.toString();
+    }
+
+    window.onload = populateReview;
+  </script>
+</body>
+</html>
