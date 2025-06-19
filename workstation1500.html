@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ByteForge: Workstation PC - $1000–$1500 Build</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo" />
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step">
+      <h2>Step 1: Choose Your Parts (Workstation PC - $1000–$1500 Budget)</h2>
+      <form action="4thpageprojectworkstation1500.html" method="get">
+
+        <!-- CPU -->
+        <div class="form-group">
+          <label for="cpu">Choose a CPU (high multi-core performance):</label>
+          <select id="cpu" name="cpu" required onchange="updateImage('cpu'); updateMotherboardOptions();">
+            <option value="">-- Select CPU --</option>
+            <option value="intel_i7_13700" data-socket="lga1700" data-price="400" data-img="Intel Core i7-13700.png">Intel Core i7-13700 - $400</option>
+            <option value="amd_ryzen7_7700x" data-socket="am5" data-price="360" data-img="AMD Ryzen 7 7700X.jpg">AMD Ryzen 7 7700X - $360</option>
+          </select>
+          <img id="cpu-img" class="part-img" style="display:none;">
+        </div>
+
+        <!-- Motherboard -->
+        <div class="form-group">
+          <label for="motherboard">Choose a Motherboard:</label>
+          <select id="motherboard" name="motherboard" required onchange="updateImage('motherboard')">
+            <option value="">-- Select Motherboard --</option>
+            <option value="asus_b660m_a" data-socket="lga1700" data-price="170" data-img="ASUS B660M-A WiFi D4.png">ASUS B660M-A WiFi D4 - $170</option>
+            <option value="msi_b650m_pro" data-socket="am5" data-price="160" data-img="MSI B650M PRO-AX.png">MSI B650M PRO-AX - $160</option>
+          </select>
+          <img id="motherboard-img" class="part-img" style="display:none;">
+        </div>
+
+        <!-- RAM -->
+        <div class="form-group">
+          <label for="ram">Choose RAM:</label>
+          <select id="ram" name="ram" required onchange="updateImage('ram')">
+            <option value="">-- Select RAM --</option>
+            <option value="corsair_32gb_3600" data-price="100" data-img="Corsair Vengeance 32GB DDR4 3600MHz.jpg">Corsair Vengeance 32GB DDR4 3600MHz - $100</option>
+            <option value="gskill_32gb_6000" data-price="130" data-img="G.Skill 32GB DDR5 6000MHz.png">G.Skill 32GB DDR5 6000MHz - $130</option>
+          </select>
+          <img id="ram-img" class="part-img" style="display:none;">
+        </div>
+
+        <!-- Storage -->
+        <div class="form-group">
+          <label for="storage">Choose Storage:</label>
+          <select id="storage" name="storage" required onchange="updateImage('storage')">
+            <option value="">-- Select Storage --</option>
+            <option value="samsung_980pro_1tb" data-price="90" data-img="Samsung 980 PRO 1TB NVMe SSD.jpg">Samsung 980 PRO 1TB NVMe SSD - $90</option>
+            <option value="crucial_p5plus_2tb" data-price="130" data-img="Crucial P5 Plus 2TB NVMe SSD.jpg">Crucial P5 Plus 2TB NVMe SSD - $130</option>
+          </select>
+          <img id="storage-img" class="part-img" style="display:none;">
+        </div>
+
+        <!-- PSU -->
+        <div class="form-group">
+          <label for="psu">Choose Power Supply:</label>
+          <select id="psu" name="psu" required onchange="updateImage('psu')">
+            <option value="">-- Select PSU --</option>
+            <option value="corsair_rm750" data-price="110" data-img="Corsair RM750 750W 80+ Gold.jpg">Corsair RM750 80+ Gold - $110</option>
+            <option value="seasonic_focus_750" data-price="120" data-img="Seasonic Focus GX-750 80+ Gold.jpg">Seasonic Focus GX-750 80+ Gold - $120</option>
+          </select>
+          <img id="psu-img" class="part-img" style="display:none;">
+        </div>
+
+        <!-- GPU -->
+        <div class="form-group">
+          <label for="gpu">Choose GPU (for rendering, 3D work, etc.):</label>
+          <select id="gpu" name="gpu" required onchange="updateImage('gpu')">
+            <option value="">-- Select GPU --</option>
+            <option value="rtx_4060ti" data-price="400" data-img="NVIDIA RTX 4060 Ti.jpg">NVIDIA GeForce RTX 4060 Ti - $400</option>
+            <option value="rx_7700xt" data-price="430" data-img="AMD Radeon RX 7700 XT.png">AMD Radeon RX 7700 XT - $430</option>
+          </select>
+          <img id="gpu-img" class="part-img" style="display:none;">
+        </div>
+
+        <button type="submit">Next</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 ByteForge. All rights reserved.
+  </footer>
+
+  <script>
+    const cpuSelect = document.getElementById('cpu');
+    const motherboardSelect = document.getElementById('motherboard');
+    const allMotherboards = Array.from(motherboardSelect.options);
+
+    function updateMotherboardOptions() {
+      const socket = cpuSelect.options[cpuSelect.selectedIndex].dataset.socket;
+      motherboardSelect.innerHTML = '';
+      motherboardSelect.appendChild(new Option('-- Select Motherboard --', ''));
+
+      allMotherboards.forEach(opt => {
+        if (opt.dataset.socket === socket) {
+          motherboardSelect.appendChild(opt.cloneNode(true));
+        }
+      });
+
+      motherboardSelect.onchange = () => updateImage('motherboard');
+      updateImage('motherboard'); // Clear motherboard image too when CPU changes
+    }
+
+    function updateImage(part) {
+      const select = document.getElementById(part);
+      const image = document.getElementById(part + '-img');
+      const selectedOption = select.options[select.selectedIndex];
+      const imgSrc = selectedOption.getAttribute('data-img');
+
+      if (imgSrc) {
+        image.src = imgSrc;
+        image.style.display = 'block';
+      } else {
+        image.src = '';
+        image.style.display = 'none';
+      }
+    }
+
+    window.onload = () => {
+      ['cpu', 'motherboard', 'ram', 'storage', 'psu', 'gpu'].forEach(part => {
+        updateImage(part);
+      });
+    };
+  </script>
+</body>
+</html>

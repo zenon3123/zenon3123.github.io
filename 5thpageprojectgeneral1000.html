@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteForge: Confirmation</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="ByteForge Logo" class="logo">
+    <h1>ByteForge: Your PC Building Guide</h1>
+  </header>
+
+  <main>
+    <section class="wizard-step" id="pdf-container">
+      <h2>Finalized Build</h2>
+        <div class="selected-parts" id="build-summary">
+          <div class="part-container">
+            <img id="cpu-img" class="part-image" alt="CPU Image">
+            <p><strong>CPU:</strong> <span id="cpu-review"></span></p>
+          </div>
+          
+          <div class="part-container">
+            <img id="motherboard-img" class="part-image" alt="Motherboard Image">
+            <p><strong>Motherboard:</strong> <span id="motherboard-review"></span></p>
+          </div>
+          
+          <div class="part-container">
+            <img id="ram-img" class="part-image" alt="RAM Image">
+            <p><strong>RAM:</strong> <span id="ram-review"></span></p>
+          </div>
+          
+          <div class="part-container">
+            <img id="storage-img" class="part-image" alt="Storage Image">
+            <p><strong>Storage:</strong> <span id="storage-review"></span></p>
+          </div>
+          
+          <div class="part-container">
+            <img id="psu-img" class="part-image" alt="Power Supply Image">
+            <p><strong>Power Supply:</strong> <span id="psu-review"></span></p>
+          </div>
+          
+          <div class="part-container">
+            <img id="gpu-img" class="part-image" alt="GPU Image">
+            <p><strong>Graphics Card:</strong> <span id="gpu-review"></span></p>
+          </div>
+          
+          <hr>
+          
+          <div><strong>Total Estimated Price:</strong> $<span id="total-price">0.00</span></div>
+        </div>
+
+      <div class="actions">
+        <button onclick="window.location.href = 'index.html';">Go Back to Home</button>
+        <button onclick="window.location.href = '2ndpageproject.html';">Build Another</button>
+        <button onclick="saveAsPDF()">Download as PDF</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const partNames = {
+      "intel_i5_13400f": "Intel Core i5-13400F",
+      "amd_ryzen5_7600": "AMD Ryzen 5 7600",
+      "msi_b660m_pro": "MSI B660M PRO",
+      "gigabyte_b650m": "Gigabyte B650M DS3H",
+      "corsair_16gb_ddr4_3200": "Corsair Vengeance 16GB DDR4 3200MHz",
+      "gskill_16gb_ddr5_6000": "G.Skill Ripjaws 16GB DDR5 6000MHz",
+      "samsung_970_1tb": "Samsung 970 EVO Plus 1TB NVMe SSD",
+      "crucial_p3_1tb": "Crucial P3 1TB NVMe SSD",
+      "corsair_cx650m": "Corsair CX650M 650W 80+ Bronze",
+      "seasonic_s12iii": "Seasonic S12III 650W 80+ Bronze",
+      "rx_6600": "AMD Radeon RX 6600",
+      "rtx_3060": "NVIDIA RTX 3060"
+    };
+
+    const partPrices = {
+      "intel_i5_13400f": 190,
+      "amd_ryzen5_7600": 230,
+      "msi_b660m_pro": 95,
+      "gigabyte_b650m": 140,
+      "corsair_16gb_ddr4_3200": 50,
+      "gskill_16gb_ddr5_6000": 80,
+      "samsung_970_1tb": 80,
+      "crucial_p3_1tb": 65,
+      "corsair_cx650m": 75,
+      "seasonic_s12iii": 65,
+      "rx_6600": 200,
+      "rtx_3060": 260
+    };
+
+    const partImages = {
+      "intel_i5_13400f": "Intel Core i5-13400F.jpg",
+      "amd_ryzen5_7600": "AMD Ryzen 5 7600.jpg",
+      "msi_b660m_pro": "MSI B660M PRO.jpg",
+      "gigabyte_b650m": "Gigabyte B650M DS3H.jpg",
+      "corsair_16gb_ddr4_3200": "Corsair Vengeance 16GB DDR4 3200MHz.jpg",
+      "gskill_16gb_ddr5_6000": "G.Skill Ripjaws 16GB DDR5 6000MHz.jpg",
+      "samsung_970_1tb": "Samsung 970 EVO Plus 1TB NVMe SSD.jpg",
+      "crucial_p3_1tb": "Crucial P3 1TB NVMe SSD.jpg",
+      "corsair_cx650m": "Corsair CX650M 650W 80+ Bronze.jpg",
+      "seasonic_s12iii": "Seasonic S12III 650W 80+ Bronze.jpg",
+      "rx_6600": "AMD Radeon RX 6600.jpg",
+      "rtx_3060": "NVIDIA RTX 3060.jpg"
+    };
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        cpu: params.get("cpu"),
+        motherboard: params.get("motherboard"),
+        ram: params.get("ram"),
+        storage: params.get("storage"),
+        psu: params.get("psu"),
+        gpu: params.get("gpu")
+      };
+    }
+
+    function populateFinalBuild() {
+      const parts = getQueryParams();
+
+      const cpu = parts.cpu || "Not selected";
+      const motherboard = parts.motherboard || "Not selected";
+      const ram = parts.ram || "Not selected";
+      const storage = parts.storage || "Not selected";
+      const psu = parts.psu || "Not selected";
+      const gpu = parts.gpu || "Not selected";
+
+      document.getElementById("cpu-review").textContent = partNames[cpu] || cpu;
+      document.getElementById("motherboard-review").textContent = partNames[motherboard] || motherboard;
+      document.getElementById("ram-review").textContent = partNames[ram] || ram;
+      document.getElementById("storage-review").textContent = partNames[storage] || storage;
+      document.getElementById("psu-review").textContent = partNames[psu] || psu;
+      document.getElementById("gpu-review").textContent = partNames[gpu] || gpu;
+
+      // Set image sources
+      document.getElementById("cpu-img").src = partImages[cpu] || "";
+      document.getElementById("motherboard-img").src = partImages[motherboard] || "";
+      document.getElementById("ram-img").src = partImages[ram] || "";
+      document.getElementById("storage-img").src = partImages[storage] || "";
+      document.getElementById("psu-img").src = partImages[psu] || "";
+      document.getElementById("gpu-img").src = partImages[gpu] || "";
+
+      const totalPrice = (partPrices[cpu] || 0) + (partPrices[motherboard] || 0) +
+                        (partPrices[ram] || 0) + (partPrices[storage] || 0) +
+                        (partPrices[psu] || 0) + (partPrices[gpu] || 0);
+
+      document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    }
+
+    function saveAsPDF() {
+      const element = document.getElementById("pdf-container");
+
+      // Apply PDF-specific styles
+      element.classList.add("pdf-mode");
+
+      html2pdf()
+        .set({
+          margin: 1,
+          filename: 'ByteForge_Final_Build.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        })
+        .from(element)
+        .save()
+        .then(() => {
+          element.classList.remove("pdf-mode");
+        });
+    }
+
+    window.onload = populateFinalBuild;
+  </script>
+
+  <footer>
+    <p>&copy; 2025 ByteForge. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
